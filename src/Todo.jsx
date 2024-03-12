@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import React from "react";
 
 function Todo() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const editIndex = null;
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -17,6 +17,8 @@ function Todo() {
         const updatedTodos = [...todos];
         updatedTodos[editIndex] = inputValue;
         setTodos(updatedTodos);
+
+        setEditIndex(null);
       } else {
         setTodos([...todos, inputValue]);
       }
@@ -25,6 +27,7 @@ function Todo() {
   };
 
   const handleEdit = (index) => {
+    setEditIndex(index);
     setInputValue(todos[index]);
   };
 
