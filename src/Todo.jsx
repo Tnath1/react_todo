@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import React from "react";
 
 function Todo() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [editIndex, setEditIndex] = useState(null);
+  const editIndex = null;
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -14,13 +14,10 @@ function Todo() {
     event.preventDefault();
     if (inputValue.trim() !== "") {
       if (editIndex !== null) {
-        // editing an existing todo, update it
         const updatedTodos = [...todos];
         updatedTodos[editIndex] = inputValue;
         setTodos(updatedTodos);
-        setEditIndex(null);
       } else {
-        // adding a new todo
         setTodos([...todos, inputValue]);
       }
       setInputValue("");
@@ -28,7 +25,6 @@ function Todo() {
   };
 
   const handleEdit = (index) => {
-    setEditIndex(index);
     setInputValue(todos[index]);
   };
 
@@ -51,12 +47,12 @@ function Todo() {
       </form>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
+          <div key={index}>
             <p>{todo}</p>
 
             <button onClick={() => handleEdit(index)}>Edit</button>
             <button onClick={() => handleDelete(index)}>Delete</button>
-          </li>
+          </div>
         ))}
       </ul>
     </div>
