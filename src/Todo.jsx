@@ -1,5 +1,4 @@
 import { useState } from "react";
-import React from "react";
 
 function Todo() {
   const [todos, setTodos] = useState([]);
@@ -37,7 +36,7 @@ function Todo() {
   };
 
   return (
-    <div>
+    <div className="todoContainer">
       <h1>Todo List</h1>
       <form onSubmit={handleSubmit}>
         <input
