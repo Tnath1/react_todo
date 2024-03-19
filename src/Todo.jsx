@@ -35,6 +35,17 @@ function Todo() {
     setTodos(newTodos);
   };
 
+  // const containerStyles = {
+  //   width: '300px',
+  //   height: '200px',
+  //   border: '1px solid #000',
+  //   overflow: 'hidden',
+  // };
+
+  const btnStyles = {
+    height: "2rem",
+  };
+
   return (
     <div className="main">
       <div className="todoContainer">
@@ -48,7 +59,7 @@ function Todo() {
               onChange={handleInputChange}
               placeholder="Please enter your todo's here"
             />
-            <Buttons id="submit" type="submit" name="button" />
+            <Buttons id="submit" type="submit" name="Submit" />
           </form>
           <ul className="listItem">
             {todos.map((todo, index) => (
@@ -56,7 +67,11 @@ function Todo() {
                 <p>{todo}</p>
 
                 <div>
-                  <Buttons name="Edit" onClick={() => handleEdit(index)} />
+                  <Buttons
+                    style={btnStyles}
+                    name="Edit"
+                    onClick={() => handleEdit(index)}
+                  />
                   <Buttons name="Delete" onClick={() => handleDelete(index)} />
                 </div>
               </li>
