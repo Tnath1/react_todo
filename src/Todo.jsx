@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Buttons from "./Buttons";
 function Todo() {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -36,27 +36,34 @@ function Todo() {
   };
 
   return (
-    <div className="todoContainer">
-      <h1>Todo List</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter a new todo"
-        />
-        <button type="submit">Add Todo</button>
-      </form>
-      <ul>
-        {todos.map((todo, index) => (
-          <div key={index}>
-            <p>{todo}</p>
+    <div className="main">
+      <div className="todoContainer">
+        <div>
+          <h1>Todo List</h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="inputField"
+              type="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="Please enter your todo's here"
+            />
+            <Buttons id="submit" type="submit" name="button" />
+          </form>
+          <ul className="listItem">
+            {todos.map((todo, index) => (
+              <li key={index}>
+                <p>{todo}</p>
 
-            <button onClick={() => handleEdit(index)}>Edit</button>
-            <button onClick={() => handleDelete(index)}>Delete</button>
-          </div>
-        ))}
-      </ul>
+                <div>
+                  <Buttons name="Edit" onClick={() => handleEdit(index)} />
+                  <Buttons name="Delete" onClick={() => handleDelete(index)} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
