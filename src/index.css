@@ -6,6 +6,7 @@
 
 body {
   background: linear-gradient(to right, #bab9b9, #516c8a, #053782);
+  font-family: Geneva, Tahoma, sans-serif;
 }
 
 div.todoContainer {
@@ -72,6 +73,7 @@ div ul li p {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
 }
 
 div ul li { 
