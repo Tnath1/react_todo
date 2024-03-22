@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Buttons from "./Buttons";
 function Todo() {
-  const [todos, setTodos] = useState([]);
+  
   const [inputValue, setInputValue] = useState("");
   const [editIndex, setEditIndex] = useState(null);
+
+  const [todos, setTodos] = useState(() => {
+    const localTodos = localStorage.getItem("todos");
+    return localTodos ? JSON.parse(localTodos) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -34,13 +43,6 @@ function Todo() {
     const newTodos = todos.filter((_, i) => i !== index);
     setTodos(newTodos);
   };
-
-  // const containerStyles = {
-  //   width: '300px',
-  //   height: '200px',
-  //   border: '1px solid #000',
-  //   overflow: 'hidden',
-  // };
 
   const btnStyles = {
     height: "2rem",
